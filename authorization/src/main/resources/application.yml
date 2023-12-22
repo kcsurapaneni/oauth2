@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: authorization
+  security:
+    oauth2:
+      authorizationserver:
+        client:
+          meet:
+            registration:
+              client-id: kcsurapaneni
+              client-secret: "{bcrypt}$2a$12$FSqte2Xlpn1B3C1wldykTuPzVFsvMgfroMaKlR.dJesbEdykhi0ia"   #password
+              client-authentication-methods:
+                - client_secret_basic
+              authorization-grant-types:
+                - client_credentials
+              scopes:
+                - admin
+#            token:
+#              access-token-time-to-live: 5s
+          greet:
+            registration:
+              client-id: ganesh
+              client-secret: "{bcrypt}$2a$12$mckf2mnaSXYo0SVASmjul.Zv4fEfLpOXbXtIL.N2PpuhCA1nlRQSK"   #secret
+              client-authentication-methods:
+                - client_secret_basic
+              authorization-grant-types:
+                - client_credentials
+              scopes:
+                - read
+                - write
+            token:
+              access-token-time-to-live: 10s
+#        endpoint:
+#          authorization-uri:
+
+logging:
+  level:
+    org.springframework.security: trace
