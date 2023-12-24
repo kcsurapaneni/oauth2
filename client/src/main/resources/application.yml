@@ -3,3 +3,23 @@ server:
 spring:
   application:
     name: client
+  security:
+    oauth2:
+      client:
+        registration:
+          hello:
+            provider: hello
+            client-id: kcsurapaneni
+            client-secret: password
+            authorization-grant-type: authorization_code
+            client-authentication-method: client_secret_basic
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - openid
+              - admin
+        provider:
+          hello:
+            issuer-uri: http://localhost:8080
+logging:
+  level:
+    org.springframework.security: trace
