@@ -13,8 +13,14 @@ spring:
                 - client_secret_basic
               authorization-grant-types:
                 - client_credentials
+                - authorization_code
+                - refresh_token
               scopes:
                 - admin
+                - openid
+              redirect-uris:
+                - http://127.0.0.1:8082/login/oauth2/code/hello
+            require-authorization-consent: true
 #            token:
 #              access-token-time-to-live: 5s
           greet:
@@ -29,7 +35,7 @@ spring:
                 - read
                 - write
             token:
-              access-token-time-to-live: 10s
+              access-token-time-to-live: 1m
 #        endpoint:
 #          authorization-uri:
 
