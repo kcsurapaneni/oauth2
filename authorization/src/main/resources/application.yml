@@ -1,45 +1,45 @@
 spring:
   application:
     name: authorization
-  security:
-    oauth2:
-      authorizationserver:
-        client:
-          meet:
-            registration:
-              client-id: kcsurapaneni
-              client-secret: "{bcrypt}$2a$12$FSqte2Xlpn1B3C1wldykTuPzVFsvMgfroMaKlR.dJesbEdykhi0ia"   #password
-              client-authentication-methods:
-                - client_secret_basic
-              authorization-grant-types:
-                - client_credentials
-                - authorization_code
-                - refresh_token
-              scopes:
-                - admin
-                - openid
-              redirect-uris:
-                - http://127.0.0.1:8082/login/oauth2/code/hello
-            require-authorization-consent: true
+#  security:
+#    oauth2:
+#      authorizationserver:
+#        client:
+#          meet:
+#            registration:
+#              client-id: kcsurapaneni
+#              client-secret: "{bcrypt}$2a$12$FSqte2Xlpn1B3C1wldykTuPzVFsvMgfroMaKlR.dJesbEdykhi0ia"   #password
+#              client-authentication-methods:
+#                - client_secret_basic
+#              authorization-grant-types:
+#                - client_credentials
+#                - authorization_code
+#                - refresh_token
+#              scopes:
+#                - admin
+#                - openid
+#              redirect-uris:
+#                - http://127.0.0.1:8082/login/oauth2/code/hello
+#            require-authorization-consent: true
 #            token:
 #              access-token-time-to-live: 5s
-          greet:
-            registration:
-              client-id: ganesh
-              client-secret: "{bcrypt}$2a$12$mckf2mnaSXYo0SVASmjul.Zv4fEfLpOXbXtIL.N2PpuhCA1nlRQSK"   #secret
-              client-authentication-methods:
-                - client_secret_basic
-              authorization-grant-types:
-                - client_credentials
-              scopes:
-                - read
-                - write
-            token:
-              access-token-time-to-live: 1m
+#          greet:
+#            registration:
+#              client-id: ganesh
+#              client-secret: "{bcrypt}$2a$12$mckf2mnaSXYo0SVASmjul.Zv4fEfLpOXbXtIL.N2PpuhCA1nlRQSK"   #secret
+#              client-authentication-methods:
+#                - client_secret_basic
+#              authorization-grant-types:
+#                - client_credentials
+#              scopes:
+#                - read
+#                - write
+#            token:
+#              access-token-time-to-live: 1m
 #        endpoint:
 #          authorization-uri:
 
-# public & private key configuration
+## public & private key configuration
 
 jwt:
   key:
