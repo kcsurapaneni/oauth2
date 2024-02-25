@@ -39,6 +39,14 @@ spring:
 #        endpoint:
 #          authorization-uri:
 
+# public & private key configuration
+
+jwt:
+  key:
+    id: init
+    public: classpath:keys/public.pem
+    private: classpath:keys/key.pem
+
 logging:
   level:
     org.springframework.security: trace
