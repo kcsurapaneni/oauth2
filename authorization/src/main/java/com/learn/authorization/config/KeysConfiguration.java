@@ -26,8 +26,9 @@ public class KeysConfiguration {
                 .privateKey(privateKey)
                 .keyID(keyId)
                 .build();
-
-        return new ImmutableJWKSet<>(new JWKSet(rsaKey));
+        return (j, sc) -> j.select(new JWKSet(rsaKey));
+        // or
+        // return new ImmutableJWKSet<>(new JWKSet(rsaKey));
     }
 
 }
