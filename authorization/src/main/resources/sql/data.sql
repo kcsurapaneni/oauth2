@@ -35,9 +35,9 @@ VALUES (1, 'ROLE_read'),
 
 INSERT INTO user
     (id, name, username, password, address)
-VALUES (1, 'Krishna Chaitanya', 'kcsurapaneni', '$2a$10$Gnuih1/NZ36TXu.K3GEc.eseoIVxBgZyd0Xx5rbdP7.c18WwcPbDS', 'India'),
-       (2, 'Vamsi Krishna', 'vkkolluri', '$2a$10$Gnuih1/NZ36TXu.K3GEc.eseoIVxBgZyd0Xx5rbdP7.c18WwcPbDS', 'USA'),
-       (3, 'Ramya Krishna', 'rkbodepudi', '$2a$10$Gnuih1/NZ36TXu.K3GEc.eseoIVxBgZyd0Xx5rbdP7.c18WwcPbDS', 'Canada');
+VALUES (1, 'Krishna Chaitanya', 'kcsurapaneni', '{bcrypt}$2a$10$Gnuih1/NZ36TXu.K3GEc.eseoIVxBgZyd0Xx5rbdP7.c18WwcPbDS', 'India'),
+       (2, 'Vamsi Krishna', 'vkkolluri', '{bcrypt}$2a$10$Gnuih1/NZ36TXu.K3GEc.eseoIVxBgZyd0Xx5rbdP7.c18WwcPbDS', 'USA'),
+       (3, 'Ramya Krishna', 'rkbodepudi', '{bcrypt}$2a$10$Gnuih1/NZ36TXu.K3GEc.eseoIVxBgZyd0Xx5rbdP7.c18WwcPbDS', 'Canada');
 
 
 -- client_roles
