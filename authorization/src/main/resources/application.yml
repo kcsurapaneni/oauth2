@@ -1,6 +1,10 @@
 spring:
   application:
     name: authorization
+  sql:
+    init:
+      data-locations: classpath:sql/data.sql
+      mode: always
 #  security:
 #    oauth2:
 #      authorizationserver:
