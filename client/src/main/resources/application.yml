@@ -7,10 +7,22 @@ spring:
     oauth2:
       client:
         registration:
-          hello:
-            provider: hello
-            client-id: kcsurapaneni
+          spotify:
+            provider: spotify
+            client-id: spotify
             client-secret: password
+            client-name: "Spotify"
+            authorization-grant-type: authorization_code
+            client-authentication-method: client_secret_basic
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - openid
+              - admin
+          slack:
+            provider: slack
+            client-id: slack
+            client-secret: secret
+            client-name: "Slack"
             authorization-grant-type: authorization_code
             client-authentication-method: client_secret_basic
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
@@ -18,8 +30,11 @@ spring:
               - openid
               - admin
         provider:
-          hello:
+          spotify:
             issuer-uri: http://localhost:8080
+          slack:
+            issuer-uri: http://localhost:8080
+
 logging:
   level:
     org.springframework.security: trace
