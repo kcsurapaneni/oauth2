@@ -3,8 +3,20 @@ spring:
     name: authorization
   sql:
     init:
-      data-locations: classpath:sql/data.sql
+      schema-locations:
+        - classpath:sql/drop-oauth2-registered-client-schema.sql
+        - classpath:org/springframework/security/oauth2/server/authorization/client/oauth2-registered-client-schema.sql
+        - classpath:sql/drop-oauth2-authorization-consent-schema.sql
+        - classpath:org/springframework/security/oauth2/server/authorization/oauth2-authorization-consent-schema.sql
+        - classpath:sql/drop-oauth2-authorization-schema.sql
+        - classpath:org/springframework/security/oauth2/server/authorization/oauth2-authorization-schema.sql
+        - classpath:org/springframework/session/jdbc/schema-drop-mysql.sql
+        - classpath:org/springframework/session/jdbc/schema-mysql.sql
+      data-locations:
+        - classpath:sql/data.sql
+        - classpath:sql/data-oauth2-registered-client.sql
       mode: always
+
 #  security:
 #    oauth2:
 #      authorizationserver:
