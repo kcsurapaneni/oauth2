@@ -1,14 +1,19 @@
 package com.learn.authorization.domain;
 
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.*;
 import org.springframework.security.core.*;
 import org.springframework.security.core.userdetails.*;
 
 import java.time.*;
 import java.util.*;
+import java.util.stream.*;
 
 /**
  * @author Krishna Chaitanya
  */
+@JsonDeserialize // https://stackoverflow.com/a/75874873/7078743
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements UserDetails {
 
     private Long id;
@@ -94,6 +99,10 @@ public class User implements UserDetails {
         return this.roles;
     }
 
+    public void setAuthorities(Collection<? extends GrantedAuthority> roles) {
+        this.roles = roles.stream().filter(Role.class::isInstance).map(e -> (Role) e).collect(Collectors.toSet());
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -113,5 +122,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 
 }

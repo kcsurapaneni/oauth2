@@ -1,10 +1,14 @@
 package com.learn.authorization.domain;
 
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.*;
 import org.springframework.security.core.*;
 
 /**
  * @author Krishna Chaitanya
  */
+@JsonDeserialize // https://stackoverflow.com/a/75874873/7078743
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Role implements GrantedAuthority {
 
     private Long id;
