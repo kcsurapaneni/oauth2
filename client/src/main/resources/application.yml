@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: 8080
 spring:
   application:
     name: client
@@ -13,7 +13,7 @@ spring:
             client-secret: password
             client-name: "Spotify"
             authorization-grant-type: authorization_code
-            client-authentication-method: client_secret_basic
+            client-authentication-method: client_secret_post
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
             scope:
               - openid
@@ -31,9 +31,9 @@ spring:
               - admin
         provider:
           spotify:
-            issuer-uri: http://localhost:8080
+            issuer-uri: http://localhost:9090
           slack:
-            issuer-uri: http://localhost:8080
+            issuer-uri: http://localhost:9090
 
 logging:
   level:
