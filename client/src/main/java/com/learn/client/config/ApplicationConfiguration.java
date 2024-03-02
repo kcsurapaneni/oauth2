@@ -16,7 +16,7 @@ public class ApplicationConfiguration {
                 .routes()
                 .route(route -> route.path("/hello")
                         .filters(GatewayFilterSpec::tokenRelay)
-                        .uri("http://localhost:8081/hello"))
+                        .uri("http://localhost:7070/hello"))
                 .build();
     }
 
