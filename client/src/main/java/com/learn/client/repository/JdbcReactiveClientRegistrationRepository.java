@@ -20,6 +20,7 @@ public class JdbcReactiveClientRegistrationRepository implements ReactiveClientR
             SELECT id,
                 client_id,
                 client_secret,
+                client_name,
                 client_authentication_method,
                 authorization_grant_type,
                 authorization_uri,
@@ -46,6 +47,7 @@ public class JdbcReactiveClientRegistrationRepository implements ReactiveClientR
         return ClientRegistration
                 .withRegistrationId(rs.getString("id"))
                 .clientId(rs.getString("client_id"))
+                .clientName(rs.getString("client_name"))
                 .clientSecret(rs.getString("client_secret"))
                 .clientAuthenticationMethod(
                         new ClientAuthenticationMethod(rs.getString("client_authentication_method"))
