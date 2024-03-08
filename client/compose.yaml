@@ -1,0 +1,15 @@
+version: "3"
+services:
+  client:
+    profiles:
+      - "oauth2_client"
+    platform: linux/amd64
+    image: mysql:8.0.23
+    container_name: oauth2_client_database
+    environment:
+      MYSQL_DATABASE: client
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "${HOST_PORT:-3311}:3306"
