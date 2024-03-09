@@ -3,7 +3,15 @@ server:
 spring:
   application:
     name: client
-
+  sql:
+    init:
+      schema-locations:
+        - classpath:sql/drop-oauth2-registered-client-schema.sql
+        - classpath:sql/oauth2-registered-client-schema.sql
+        - classpath:sql/drop-oauth2-authorized-client-schema.sql
+        - classpath:sql/oauth2-authorized-client-schema.sql
+      data-locations: classpath:sql/data-oauth2-registered-client.sql
+      mode: always
 #  security:
 #    oauth2:
 #      client:
@@ -35,7 +43,11 @@ spring:
 #            issuer-uri: http://localhost:9090
 #          slack:
 #            issuer-uri: http://localhost:9090
-
+  docker:
+    compose:
+      profiles:
+        active: "oauth2_client"
+      file: client/compose.yaml
 
 logging:
   level:
