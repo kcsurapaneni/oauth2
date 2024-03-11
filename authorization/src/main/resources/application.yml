@@ -18,6 +18,11 @@ spring:
         - classpath:sql/data.sql
         - classpath:sql/data-oauth2-registered-client.sql
       mode: always
+  docker:
+    compose:
+      profiles:
+        active: "oauth2_server"
+      file: authorization/compose.yaml
 
 #  security:
 #    oauth2:
