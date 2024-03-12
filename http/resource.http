@@ -1,0 +1,123 @@
+### kc oauth2 token
+
+POST http://localhost:9090/oauth2/token
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic kcsurapaneni password
+
+grant_type = client_credentials &
+scope = admin
+
+
+// saving to a variable
+> {%
+    client.global.set("kc_access_token", response.body.access_token);
+%}
+
+### kc accessing hello resource
+
+GET http://localhost:8081/hello
+Authorization: Bearer {{kc_access_token}}
+
+### kc accessing hello service resource
+
+GET http://localhost:8081/hello/service
+Authorization: Bearer {{kc_access_token}}
+
+
+### ganesh oauth2 token
+
+POST http://localhost:9090/oauth2/token
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic ganesh secret
+
+grant_type = client_credentials &
+scope = read write
+
+// saving to a variable
+> {%
+    client.global.set("ganesh_access_token", response.body.access_token);
+%}
+
+
+### ganesh accessing hello resource
+
+GET http://localhost:8081/hello
+Authorization: Bearer {{ganesh_access_token}}
+
+### ganesh accessing hello service resource
+
+GET http://localhost:8081/hello/service
+Authorization: Bearer {{ganesh_access_token}}
+
+
+### Authorization Server's JWK Set Endpoint
+GET http://127.0.0.1:9090/oauth2/jwks
+
+### OpenID configuration
+GET http://localhost:9090/.well-known/openid-configuration
+
+### Authorize Endpoint
+GET http://localhost:9090/oauth2/authorize?response_type=code&client_id=slack&scope=openid admin&redirect_uri=http://127.0.0.1:8080/login/oauth2/code/slack
+
+### Token Endpoint
+POST http://localhost:9090/oauth2/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type = authorization_code &
+scope = openid admin &
+code = RDB4EgtIPjCotwEIpd4LiyD61eYf6t43biFtNjyZEgnYwJlB7EG3cO_tbTwlKEFOcaFm4AvU4uMEzReBmNzPx2mn3YKftw6yD-sV4uVJGY0wFc2X_SLUHpeY3Jsx3Wze &
+redirect_uri = http://127.0.0.1:8080/login/oauth2/code/slack &
+client_id = slack &
+client_secret = secret
+
+
+### Token Endpoint (Basic)
+POST http://localhost:9090/oauth2/token
+Content-Type: application/x-www-form-urlencoded
+Accept: application/json
+Authorization: Basic c2xhY2s6c2VjcmV0
+
+grant_type = authorization_code &
+scope = openid admin &
+redirect_uri = http://127.0.0.1:8082/login/oauth2/code/slack &
+code = F66YyWdAHfMbFV3ovmUFth7BrdSVIjU7O50u5OTQqEvua4Rz1E9l1Nk69tG1Ppc0grTsSCx3YKvVMkXXaacEFPjuykUpXNibmvi4aSeG8dEYeb0HfOy_Yr1Uquyx9qbH
+
+
+### Introspect Endpoint
+
+POST http://localhost:9090/oauth2/introspect
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic slack secret
+
+token = eyJraWQiOiJpbml0IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJrY3N1cmFwYW5lbmkiLCJhdWQiOiJzbGFjayIsIm5iZiI6MTcwOTE4MDczOCwic2NvcGUiOlsib3BlbmlkIiwiYWRtaW4iXSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwIiwiZXhwIjoxNzA5MTgxMDM4LCJpYXQiOjE3MDkxODA3MzgsImp0aSI6ImNiMmE0ZWUxLWEzNTItNDNjYS05YjViLTE4NDhjMDlhMDMyMyJ9.uLnhc6zhmlmeIOijc0I3IPVdr0whhqI-flrgWZg8kr6RduIM0jMilf4zOU606pHbd6a5SiiTbeV2omwZzEpztIeldERETRjTotciFj5jHH2KltsuvRRbIBCVhGdqVsisG3akxk1WDaKicV6j0bQpgA-TQ9wBmxVn7upzsD2gCmuG025sQnBSiLkztwDpm1DmO3N3rJoYZKagofOwjZW3eO4COWp_PKk7-WAaRnjns6t-_ZL37pLOrfQ1f8CUtvMk7Gt_FKeY6ufa7oVLxdkcIqwPtNMfUJuTK5t6ZrVEvXiW8mxTazIksNODhvtx3joohPjJ1l6UsOMOD1PUJYLmNQ
+
+
+### User Info Endpoint
+
+GET http://localhost:9090/userinfo
+Authorization: Bearer eyJraWQiOiJpbml0IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJrY3N1cmFwYW5lbmkiLCJhdWQiOiJzbGFjayIsIm5iZiI6MTcwOTI1ODQxOSwic2NvcGUiOlsib3BlbmlkIiwiYWRtaW4iXSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwIiwiZXhwIjoxNzA5MjU4NzE5LCJpYXQiOjE3MDkyNTg0MTksImp0aSI6ImNmY2M2OTMxLWY3ZjEtNDgwMC1hMzM2LTA1NThlOWViN2IxNiJ9.OnG901Rldkga4lbaclKXwk_-tUFX8y3k4iRO21L7KqPeiWGwUpLOS-8IIGsMz1rw_S_xn4xcPqbfR_7TX5jMuO8oiXLU1fOJ2z1i4iukgC-Yz-cGq2xpY6enAUne46dISPcsI4ltcekWmRRPEQHz_ZD-hVu_vHAuO2OcT7ELUX_wYHhf7VhORWdq3FVS5qtp4iVUKRSUqN2zlnrwsa-ivIosrIQMoJG4WF24U5nRRzF73rG5jvkUg5n2u2fvJefZsJMjDKmcVbSmDoh_-0SKUo_K2QYh0Jf57Aebgjn2v56eEn1uphn4vIFye0X05ep_OT5_KKxECzWiGjpotCtLqA
+
+
+### Token Endpoint (PKCE)
+POST http://localhost:9090/oauth2/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type = authorization_code &
+scope = read write &
+code = EC79YjRaogq82O96lCWDDzjI4s8mlQHEDSdpMI6VyKVocAn2eYlNxN8vk8piOrcgQjWgYnvoWvx5O2amof_LwrDngJQIOrTCwvaa7qU3GcITXoeqOh9UNQAUOItwyccQ &
+redirect_uri = http://127.0.0.1:8088 &
+client_id = mobile &
+code_verifier = abcdefghijklmnopqrstuvwxyz123456789abcdefghijklmnopqrstuvwxyz123456789
+
+
+### Client Credentials Grant Type to fetch the token
+POST http://localhost:9090/oauth2/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type = client_credentials &
+client_id = slack &
+client_secret = secret
+
+### Resource Server
+GET http://127.0.0.1:7070/hello
+Authorization: Bearer eyJraWQiOiJpbml0IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJzbGFjayIsImF1ZCI6InNsYWNrIiwibmJmIjoxNzA5MzIxMTQ2LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjkwOTAiLCJleHAiOjE3MDkzMjE0NDYsImlhdCI6MTcwOTMyMTE0NiwianRpIjoiMzUyMTI4YWEtZWI1ZS00MzcxLWJmOTctYzRkODhiNjcxNzA4In0.R5bBJNMMycplFn0wITBt7RmR3U3nxZeQKYhVwBLX9svgkc4sVGhqwuPDAfxOyx5MPNmCb2Y_8gfJdYI22b4QPAnqFsJt3tcJtuKqHfqQl4QTqi_NYos8fSbgkut492q4kuefM_k4x-b7CkZJ9UxFPdOIJmhBLbESg1CLH_4DssO-vx67dSuOqI8z1MddSwxS8bH9PSSvmsEh422IPtLDuAj8ohO83eJFZE9NXVh_Aj2O3u_C7gbkaPexUUNCeH5WIYOoII71GybgZpM4hUONlX8HuWKUxOxhZ6d8bKhnSit61PYWC6wilRNj0ntCT6AVCd0AYLtZQEe1j7W1JG_KJg
