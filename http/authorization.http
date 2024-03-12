@@ -1,0 +1,53 @@
+### openid configuration
+
+GET http://localhost:9090/.well-known/openid-configuration
+#Content-Type: application/x-www-form-urlencoded
+#Authorization: Basic kcsurapaneni password
+
+
+### kc oauth2 token
+
+POST http://localhost:9090/oauth2/token
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic kcsurapaneni password
+
+grant_type = client_credentials &
+scope = admin
+
+
+// saving to a variable
+> {%
+client.global.set("kc_access_token", response.body.access_token);
+%}
+
+
+### introspecting kc token
+
+POST http://localhost:9090/oauth2/introspect
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic kcsurapaneni password
+
+token = {{kc_access_token}}
+
+
+### ganesh oauth2 token
+
+POST http://localhost:9090/oauth2/token
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic ganesh secret
+
+grant_type = client_credentials &
+scope = read write
+
+// saving to a variable
+> {%
+    client.global.set("ganesh_access_token", response.body.access_token);
+%}
+
+### introspecting ganesh token
+
+POST http://localhost:9090/oauth2/introspect
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic ganesh secret
+
+token = {{ganesh_access_token}}
