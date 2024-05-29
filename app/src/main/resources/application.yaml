@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: app
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:7171/jwks
+
+server:
+  port: 7272
+
+logging:
+  level:
+    org.springframework.security: trace
