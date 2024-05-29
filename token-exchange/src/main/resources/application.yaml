@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: token-exchange
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9090
+
+server:
+  port: 7171
+
+logging:
+  level:
+    org.springframework.security: trace
+
+jwt:
+  key:
+    id: local
+    rsa-public: classpath:keys/public.pem
+    rsa-private: classpath:keys/key.pem
