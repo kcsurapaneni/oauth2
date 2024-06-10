@@ -21,7 +21,7 @@ public class SecurityConfig {
                         .requestMatchers("/jwks").permitAll()
                         .anyRequest().authenticated()
                 )
-                .oauth2ResourceServer(resourceServer -> resourceServer.jwt(Customizer.withDefaults()));
+                .oauth2Login(Customizer.withDefaults());
 
         return http.build();
     }

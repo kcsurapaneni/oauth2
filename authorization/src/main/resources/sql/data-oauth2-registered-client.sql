@@ -22,7 +22,7 @@ INSERT INTO oauth2_registered_client (id, client_id, client_id_issued_at, client
 VALUES ('8ddbf809-d5be-11ee-9758-0242ac130002', 'mobile', CURRENT_TIMESTAMP,
         null, null,
         'mobile-native-app', 'none',
-        'authorization_code', 'http://127.0.0.1:8088', '',
+        'authorization_code', 'http://127.0.0.1:7171/login/oauth2/code/mobile', '',
         'openid,admin',
         '{"@class":"java.util.Collections$UnmodifiableMap","settings.client.require-proof-key":true,"settings.client.require-authorization-consent":true}',
         '{"@class":"java.util.Collections$UnmodifiableMap","settings.token.reuse-refresh-tokens":true,"settings.token.id-token-signature-algorithm":["org.springframework.security.oauth2.jose.jws.SignatureAlgorithm","RS256"],"settings.token.access-token-time-to-live":["java.time.Duration",300.000000000],"settings.token.access-token-format":{"@class":"org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat","value":"self-contained"},"settings.token.refresh-token-time-to-live":["java.time.Duration",3600.000000000],"settings.token.authorization-code-time-to-live":["java.time.Duration",300.000000000],"settings.token.device-code-time-to-live":["java.time.Duration",300.000000000]}');

@@ -3,9 +3,24 @@ spring:
     name: token-exchange
   security:
     oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:9090
+      client:
+        registration:
+          mobile:
+            provider: mobile
+            client-id: mobile
+            client-name: "Mobile"
+            authorization-grant-type: authorization_code
+            client-authentication-method: none
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - openid
+              - admin
+        provider:
+          mobile:
+            issuer-uri: http://localhost:9090
+#      resourceserver:
+#        jwt:
+#          issuer-uri: http://localhost:9090
 
 server:
   port: 7171
